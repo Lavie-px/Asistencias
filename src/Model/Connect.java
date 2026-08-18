@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 
 public class Connect {
 
-    public static final String URL = "jdbc:mysql://granalla.cl/granalla_ProyectoHirata?useSSL=false&allowPublicKeyRetrieval=true";
-    public static final String USER = "granalla_test";
-    public static final String CLAVE = "granalla_test";
+    public static final String URL = "jdbc:mysql://granalla.cl/granalla_ChemsHub?useSSL=false&allowPublicKeyRetrieval=true";
+    public static final String USER = "granalla_Net";
+    public static final String CLAVE = "GranallaNet";
 
     private static Connection con = null;
 
