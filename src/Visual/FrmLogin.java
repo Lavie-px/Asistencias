@@ -210,7 +210,7 @@ public class FrmLogin extends javax.swing.JFrame {
                 ObjSesion.setNombreReal(resultadoLogin.getString("Nombre"));
                 ObjSesion.setApellidoReal(resultadoLogin.getString("Apellido"));
                 ObjSesion.setCorreo(resultadoLogin.getString("Correo"));
-                ObjSesion.setTipoUsuario(resultadoLogin.getString("Cargo"));
+                ObjSesion.setTipoUsuario(resultadoLogin.getString("Rol"));
                 
                 //FrmPrincipal ObjPrincipal = new FrmPrincipal(ObjSesion.getTipoUsuario());
                 //ObjPrincipal.setVisible(true);
