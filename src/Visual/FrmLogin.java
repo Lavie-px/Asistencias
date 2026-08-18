@@ -1,5 +1,6 @@
 package Visual;
 
+import Controller.BloqueoController;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
@@ -8,6 +9,12 @@ import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 import Helpers.Navigation;
 import java.awt.Color;
+import java.sql.ResultSet;
+import java.time.LocalDateTime;
+import javax.swing.JOptionPane;
+import Controller.Auth.LoginController;
+import Controller.User.Sesion;
+import Model.Connect;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -22,9 +29,13 @@ public class FrmLogin extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmLogin.class.getName());
 
-    /**
-     * Creates new form FrmLogin
-     */
+    private static int Intentos = 0;
+    private static LocalDateTime horaBloqueo = null;
+    Sesion ObjSesion = new Sesion();
+    BloqueoController bloqueoCtrl = new BloqueoController();
+    Connect con = new Connect();
+    LoginController ObjLogin = new LoginController();
+    
     public FrmLogin() {
         this.setUndecorated(true);
         initComponents();
@@ -171,6 +182,54 @@ public class FrmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLoginActionPerformed
+    
+       
+        // Verificar si el equipo está bloqueado
+        if (bloqueoCtrl.verificarBloqueo()) {
+            JOptionPane.showMessageDialog(this, "Este equipo está bloqueado temporalmente.\n" +"Intente nuevamente después de 5 minutos.","BLOQUEADO", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        String correo = TxtCorreo.getText();
+        String clave = TxtContrasena.getText();
+
+        try {
+            
+            //el resultset valida los datos en la bd y si no hay conexion tira error
+            ResultSet resultadoLogin = ObjLogin.ValidarUsuario(correo, clave);
+
+            if (resultadoLogin == null) {
+                JOptionPane.showMessageDialog(this, "No hay conexión", "ERROR", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (resultadoLogin.next()) {
+                
+                //setea los datos obtenidos del resultset en los campos correspondientes en la clase sesion
+                ObjSesion.setRut(resultadoLogin.getString("Rut"));
+                ObjSesion.setNombreReal(resultadoLogin.getString("Nombre"));
+                ObjSesion.setApellidoReal(resultadoLogin.getString("Apellido"));
+                ObjSesion.setCorreo(resultadoLogin.getString("Correo"));
+                ObjSesion.setTipoUsuario(resultadoLogin.getString("Cargo"));
+                
+                //FrmPrincipal ObjPrincipal = new FrmPrincipal(ObjSesion.getTipoUsuario());
+                //ObjPrincipal.setVisible(true);
+               
+                Intentos = 0;
+                dispose();
+            } else {
+                Intentos++;
+                JOptionPane.showMessageDialog(this, "Contraseña o usuario inválido", "ERROR", JOptionPane.ERROR_MESSAGE);
+
+                if (Intentos >= 3) {
+                    //activa el bloqueo mediante MAC durante 5 minutos comparando hora y fecha del ban con la actual del equipo
+                    bloqueoCtrl.activarBloqueo();
+                    JOptionPane.showMessageDialog(this,"Demasiados intentos fallidos.\nEl equipo ha sido bloqueado por 5 minutos.","BLOQUEADO", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnLoginActionPerformed
 
