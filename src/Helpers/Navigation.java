@@ -5,10 +5,8 @@
 package Helpers;
 
 import java.awt.Component;
-import java.awt.Window;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 
 public class Navigation {
 
@@ -19,16 +17,17 @@ public class Navigation {
         }
     }
 
-    public static void Volver(Component parent, JFrame anterior) {
-        int Opcion = JOptionPane.showConfirmDialog(parent, "Esta seguro de volver?", "Salir", JOptionPane.YES_NO_OPTION);
+    public static void Volver(JFrame actual, JFrame anterior) {
+        int Opcion = JOptionPane.showConfirmDialog(actual, "Esta seguro de volver?", "Salir", JOptionPane.YES_NO_OPTION);
         if (Opcion == JOptionPane.YES_OPTION) {
-            Window actual = SwingUtilities.getWindowAncestor(parent);
-
-            if (actual != null) {
-                actual.dispose();
-            }
-
+            actual.dispose();
             anterior.setVisible(true);
         }
+    }
+    
+    public static void Viajar(JFrame actual, JFrame anterior) {
+        actual.dispose();
+        anterior.setVisible(true);
+        
     }
 }
