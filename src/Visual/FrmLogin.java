@@ -80,7 +80,7 @@ public class FrmLogin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         LblContraseña.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        LblContraseña.setText("Correo");
+        LblContraseña.setText("Contraseña");
 
         LblCorreo1.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         LblCorreo1.setText("Correo");
