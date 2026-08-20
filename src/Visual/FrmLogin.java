@@ -212,8 +212,8 @@ public class FrmLogin extends javax.swing.JFrame {
                 ObjSesion.setCorreo(resultadoLogin.getString("Correo"));
                 ObjSesion.setTipoUsuario(resultadoLogin.getString("Rol"));
                 
-                //FrmPrincipal ObjPrincipal = new FrmPrincipal(ObjSesion.getTipoUsuario());
-                //ObjPrincipal.setVisible(true);
+                FrmPrincipal ObjPrincipal = new FrmPrincipal(ObjSesion.getTipoUsuario());
+                ObjPrincipal.setVisible(true);
                
                 Intentos = 0;
                 dispose();
