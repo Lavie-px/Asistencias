@@ -5,8 +5,16 @@
 package Visual;
 
 import Controller.Asistencias.ReporteController;
+import Controller.User.Sesion;
+import Helpers.Navigation;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
 import java.sql.ResultSet;
+import javax.swing.AbstractAction;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 import javax.swing.table.DefaultTableModel;
 
 public class FrmAtrasos extends javax.swing.JFrame {
@@ -14,11 +22,32 @@ public class FrmAtrasos extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmAtrasos.class.getName());
 
     ReporteController reporteCtrl = new ReporteController();
-
+    //crea un objeto de sesion para poder traer datos del usuario actual
+    //en este caso el tipo de usuario
+    //IMPORTANTE!!! la IA te dira que esto esta mal y no se ejecutara por que esta fuera del constructor
+    //pero se equivoca ademas funciona forma global en el codigo, si llamas al objsesion en cualquier parte puedes traer datos
+    Sesion ObjSesion = new Sesion();
+    String tipoUsuario = ObjSesion.getTipoUsuario();
     public FrmAtrasos() {
+        this.setUndecorated(true);
         initComponents();
+        Image icon = new ImageIcon(getClass().getResource("/Assets/TaskBarIcon.png")).getImage();
+        setIconImage(icon);
+        try {
+            java.awt.Taskbar.getTaskbar().setIconImage(icon);
+        } catch (Exception e) {
+        }
+        setSize(565, 461);
         setLocationRelativeTo(null);
         setResizable(false);
+
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"), "salir");
+        getRootPane().getActionMap().put("salir", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Navigation.Volver(FrmAtrasos.this, new FrmPrincipal(tipoUsuario));
+            }
+        });
     }
 
     /**
@@ -38,7 +67,6 @@ public class FrmAtrasos extends javax.swing.JFrame {
         BtnVerInasistencias = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -53,10 +81,7 @@ public class FrmAtrasos extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 414, 314));
-
         jLabel1.setText("Atrasos y faltas ");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         BtnVerAtrasos.setText("Atrasos");
         BtnVerAtrasos.addActionListener(new java.awt.event.ActionListener() {
@@ -64,7 +89,6 @@ public class FrmAtrasos extends javax.swing.JFrame {
                 BtnVerAtrasosActionPerformed(evt);
             }
         });
-        getContentPane().add(BtnVerAtrasos, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, -1, -1));
 
         BtnVerSalidas.setText("Salidas");
         BtnVerSalidas.addActionListener(new java.awt.event.ActionListener() {
@@ -72,7 +96,6 @@ public class FrmAtrasos extends javax.swing.JFrame {
                 BtnVerSalidasActionPerformed(evt);
             }
         });
-        getContentPane().add(BtnVerSalidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, -1, -1));
 
         BtnVerInasistencias.setText("Inasistencias");
         BtnVerInasistencias.addActionListener(new java.awt.event.ActionListener() {
@@ -80,7 +103,38 @@ public class FrmAtrasos extends javax.swing.JFrame {
                 BtnVerInasistenciasActionPerformed(evt);
             }
         });
-        getContentPane().add(BtnVerInasistencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 350, -1, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel1))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(BtnVerAtrasos)
+                .addGap(94, 94, 94)
+                .addComponent(BtnVerSalidas)
+                .addGap(74, 74, 74)
+                .addComponent(BtnVerInasistencias))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabel1)
+                .addGap(4, 4, 4)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BtnVerAtrasos)
+                    .addComponent(BtnVerSalidas)
+                    .addComponent(BtnVerInasistencias)))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
