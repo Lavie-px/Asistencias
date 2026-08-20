@@ -31,6 +31,10 @@ public class FrmLogin extends javax.swing.JFrame {
 
     private static int Intentos = 0;
     private static LocalDateTime horaBloqueo = null;
+    //crea un objeto de sesion para poder traer datos del usuario actual
+    //en este caso el tipo de usuario
+    //IMPORTANTE!!! la IA te dira que esto esta mal y no se ejecutara por que esta fuera del constructor
+    //pero se equivoca ademas funciona forma global en el codigo, si llamas al objsesion en cualquier parte puedes traer datos
     Sesion ObjSesion = new Sesion();
     BloqueoController bloqueoCtrl = new BloqueoController();
     Connect con = new Connect();
@@ -80,7 +84,7 @@ public class FrmLogin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         LblContraseña.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
-        LblContraseña.setText("Correo");
+        LblContraseña.setText("Contraseña");
 
         LblCorreo1.setFont(new java.awt.Font("Bahnschrift", 0, 14)); // NOI18N
         LblCorreo1.setText("Correo");
@@ -212,8 +216,7 @@ public class FrmLogin extends javax.swing.JFrame {
                 ObjSesion.setCorreo(resultadoLogin.getString("Correo"));
                 ObjSesion.setTipoUsuario(resultadoLogin.getString("Rol"));
                 
-                //FrmPrincipal ObjPrincipal = new FrmPrincipal(ObjSesion.getTipoUsuario());
-                //ObjPrincipal.setVisible(true);
+                Navigation.Viajar(FrmLogin.this, new FrmPrincipal(ObjSesion.getTipoUsuario()));
                
                 Intentos = 0;
                 dispose();

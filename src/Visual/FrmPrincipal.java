@@ -4,20 +4,38 @@ import Controller.Asistencias.AsistenciaController;
 import Controller.User.Sesion;
 import Helpers.Navigation;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import javax.swing.AbstractAction;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 
 public class FrmPrincipal extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmPrincipal.class.getName());
 
     AsistenciaController asistenciaCtrl = new AsistenciaController();
-    private static final String ROL_ADMIN = "1";
+    //crea un objeto de sesion para poder traer datos del usuario actual
+    //en este caso el tipo de usuario
+    //IMPORTANTE!!! la IA te dira que esto esta mal y no se ejecutara por que esta fuera del constructor
+    //pero se equivoca ademas funciona forma global en el codigo, si llamas al objsesion en cualquier parte puedes traer datos
+    Sesion ObjSesion = new Sesion();
+    String tipoUsuario = ObjSesion.getTipoUsuario();
 
     public FrmPrincipal(String tipoUsuario) {
+        this.setUndecorated(true);
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        BtnAtrasos.setVisible(ROL_ADMIN.equals(tipoUsuario));
+        BtnAtrasos.setVisible(tipoUsuario.equals(tipoUsuario));
+        
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"), "salir");
+        getRootPane().getActionMap().put("salir", new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Navigation.Volver(FrmPrincipal.this, new FrmLogin());
+            }
+        });
     }
 
     /**
@@ -36,37 +54,62 @@ public class FrmPrincipal extends javax.swing.JFrame {
         BtnAtrasos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Menu de asistencia ");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 14, 110, -1));
 
-        BtnEntrada.setText("jButton1");
+        BtnEntrada.setText("Entrada");
         BtnEntrada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnEntradaActionPerformed(evt);
             }
         });
-        getContentPane().add(BtnEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, -1, -1));
 
-        BtnSalida.setText("jButton2");
+        BtnSalida.setText("Salida");
         BtnSalida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnSalidaActionPerformed(evt);
             }
         });
-        getContentPane().add(BtnSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, -1, -1));
 
         LblMensaje.setText("jLabel2");
-        getContentPane().add(LblMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, -1, -1));
 
-        BtnAtrasos.setText("jButton3");
+        BtnAtrasos.setText("Atrasos");
         BtnAtrasos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAtrasosActionPerformed(evt);
             }
         });
-        getContentPane().add(BtnAtrasos, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 10, -1, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(234, 234, 234)
+                .addComponent(BtnAtrasos))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(BtnEntrada)
+                .addGap(41, 41, 41)
+                .addComponent(BtnSalida)
+                .addGap(51, 51, 51)
+                .addComponent(LblMensaje))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnAtrasos)
+                    .addComponent(jLabel1))
+                .addGap(253, 253, 253)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BtnEntrada)
+                    .addComponent(BtnSalida)
+                    .addComponent(LblMensaje)))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -104,8 +147,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnSalidaActionPerformed
 
     private void BtnAtrasosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAtrasosActionPerformed
-        FrmAtrasos ObjAtrasos = new FrmAtrasos();
-        ObjAtrasos.setVisible(true);
+        Navigation.Viajar(FrmPrincipal.this, new FrmAtrasos());
     }//GEN-LAST:event_BtnAtrasosActionPerformed
 
     /**
