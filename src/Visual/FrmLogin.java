@@ -31,6 +31,10 @@ public class FrmLogin extends javax.swing.JFrame {
 
     private static int Intentos = 0;
     private static LocalDateTime horaBloqueo = null;
+    //crea un objeto de sesion para poder traer datos del usuario actual
+    //en este caso el tipo de usuario
+    //IMPORTANTE!!! la IA te dira que esto esta mal y no se ejecutara por que esta fuera del constructor
+    //pero se equivoca ademas funciona forma global en el codigo, si llamas al objsesion en cualquier parte puedes traer datos
     Sesion ObjSesion = new Sesion();
     BloqueoController bloqueoCtrl = new BloqueoController();
     Connect con = new Connect();
