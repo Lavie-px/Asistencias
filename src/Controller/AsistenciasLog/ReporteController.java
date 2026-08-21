@@ -1,4 +1,4 @@
-package Controller.Asistencias;
+package Controller.AsistenciasLog;
 
 import Model.Connect;
 import java.sql.Connection;
