@@ -1,13 +1,12 @@
 package Visual;
 
-import Controller.Asistencias.AsistenciaController;
+import Controller.AsistenciasLog.AsistenciaController;
 import Controller.User.Sesion;
 import Helpers.Navigation;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.JComponent;
-import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 public class FrmPrincipal extends javax.swing.JFrame {

@@ -4,7 +4,7 @@
  */
 package Visual;
 
-import Controller.Asistencias.ReporteController;
+import Controller.AsistenciasLog.ReporteController;
 import Controller.User.Sesion;
 import Helpers.Navigation;
 import java.awt.Image;
