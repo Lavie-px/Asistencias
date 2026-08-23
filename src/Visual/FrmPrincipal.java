@@ -7,6 +7,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 public class FrmPrincipal extends javax.swing.JFrame {
@@ -27,7 +28,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         BtnAtrasos.setVisible(tipoUsuario.equals(tipoUsuario));
-        
+
         getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"), "salir");
         getRootPane().getActionMap().put("salir", new AbstractAction() {
             @Override
@@ -112,6 +113,26 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    public void configurarPorRol(String tipoUsuario) {
+        tipoUsuario = tipoUsuario.toLowerCase();
+
+        switch (tipoUsuario) {
+            case "1":
+                BtnEntrada.setVisible(true);
+                BtnSalida.setVisible(true);
+                BtnAtrasos.setVisible(true);
+                
+            case "0":
+                BtnEntrada.setVisible(true);
+                BtnSalida.setVisible(true);
+                BtnAtrasos.setVisible(false);
+                
+            default:
+                JOptionPane.showMessageDialog(this, "Tipo de usuario no reconocido");
+                System.exit(0);
+                break;
+        }
+    }
 
     private void BtnEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEntradaActionPerformed
         try {
