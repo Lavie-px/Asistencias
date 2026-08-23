@@ -28,9 +28,11 @@ public class FrmAtrasos extends javax.swing.JFrame {
     //pero se equivoca ademas funciona forma global en el codigo, si llamas al objsesion en cualquier parte puedes traer datos
     Sesion ObjSesion = new Sesion();
     String tipoUsuario = ObjSesion.getTipoUsuario();
+
     public FrmAtrasos() {
         this.setUndecorated(true);
         initComponents();
+        CargarAtrasos();
         Image icon = new ImageIcon(getClass().getResource("/Assets/TaskBarIcon.png")).getImage();
         setIconImage(icon);
         try {
@@ -139,7 +141,7 @@ public class FrmAtrasos extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BtnVerAtrasosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerAtrasosActionPerformed
+    public void CargarAtrasos() {
         try {
             ResultSet rs = reporteCtrl.obtenerAtrasos();
             String[] columnas = {"Rut", "Nombre", "Fecha", "Hora Entrada"};
@@ -157,6 +159,10 @@ public class FrmAtrasos extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    private void BtnVerAtrasosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerAtrasosActionPerformed
+        CargarAtrasos();
     }//GEN-LAST:event_BtnVerAtrasosActionPerformed
 
     private void BtnVerSalidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerSalidasActionPerformed
@@ -180,7 +186,7 @@ public class FrmAtrasos extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnVerSalidasActionPerformed
 
     private void BtnVerInasistenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerInasistenciasActionPerformed
-         try {
+        try {
             ResultSet rs = reporteCtrl.obtenerInasistencias();
             String[] columnas = {"Rut", "Nombre", "Fecha"};
             DefaultTableModel modelo = new DefaultTableModel(null, columnas);
@@ -196,7 +202,7 @@ public class FrmAtrasos extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error: " + e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
-    
+
     }//GEN-LAST:event_BtnVerInasistenciasActionPerformed
 
     /**
