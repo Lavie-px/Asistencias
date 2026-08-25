@@ -1,1 +1,8 @@
 /build/
+/dist/
+/nbbuild/
+/nbdist/
+/nbproject/private/
+.netbeans/
+.nb-gradle/
+nb-configuration.xml
