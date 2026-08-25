@@ -7,6 +7,7 @@ package Visual;
 import Controller.AsistenciasLog.ReporteController;
 import Controller.User.Sesion;
 import Helpers.Navigation;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.sql.ResultSet;
@@ -63,6 +64,7 @@ public class FrmAtrasos extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        LblInstrucciones = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         BtnVerAtrasos = new javax.swing.JButton();
         BtnVerSalidas = new javax.swing.JButton();
@@ -86,6 +88,21 @@ public class FrmAtrasos extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 64, 400, 300));
+
+        LblInstrucciones.setForeground(new java.awt.Color(0, 0, 0));
+        LblInstrucciones.setText("Presione ESC o aqui para salir");
+        LblInstrucciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LblInstruccionesMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                LblInstruccionesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                LblInstruccionesMouseExited(evt);
+            }
+        });
+        getContentPane().add(LblInstrucciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Variable", 2, 36)); // NOI18N
         jLabel1.setText("Atrasos y faltas ");
@@ -116,7 +133,6 @@ public class FrmAtrasos extends javax.swing.JFrame {
         getContentPane().add(BtnVerInasistencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 383, 120, 40));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/marca.jpg"))); // NOI18N
-        jLabel2.setText("jLabel2");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -20, -1, -1));
 
         pack();
@@ -186,6 +202,18 @@ public class FrmAtrasos extends javax.swing.JFrame {
 
     }//GEN-LAST:event_BtnVerInasistenciasActionPerformed
 
+    private void LblInstruccionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LblInstruccionesMouseClicked
+        Navigation.Volver(FrmAtrasos.this, new FrmPrincipal(tipoUsuario));
+    }//GEN-LAST:event_LblInstruccionesMouseClicked
+
+    private void LblInstruccionesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LblInstruccionesMouseEntered
+        LblInstrucciones.setForeground(Color.red);
+    }//GEN-LAST:event_LblInstruccionesMouseEntered
+
+    private void LblInstruccionesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LblInstruccionesMouseExited
+        LblInstrucciones.setForeground(Color.black);
+    }//GEN-LAST:event_LblInstruccionesMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -215,6 +243,7 @@ public class FrmAtrasos extends javax.swing.JFrame {
     private javax.swing.JButton BtnVerAtrasos;
     private javax.swing.JButton BtnVerInasistencias;
     private javax.swing.JButton BtnVerSalidas;
+    private javax.swing.JLabel LblInstrucciones;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
