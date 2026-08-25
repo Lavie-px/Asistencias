@@ -49,10 +49,9 @@ public class FrmLogin extends javax.swing.JFrame {
             java.awt.Taskbar.getTaskbar().setIconImage(icon);
         } catch (Exception e) {
         }
-        setSize(565, 461);
+        setSize(720, 480);
+        setPreferredSize(new java.awt.Dimension(480, 720));
         setLocationRelativeTo(null);
-        setResizable(false);
-
         getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"), "salir");
         getRootPane().getActionMap().put("salir", new AbstractAction() {
             @Override

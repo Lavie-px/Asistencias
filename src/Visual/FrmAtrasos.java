@@ -39,9 +39,9 @@ public class FrmAtrasos extends javax.swing.JFrame {
             java.awt.Taskbar.getTaskbar().setIconImage(icon);
         } catch (Exception e) {
         }
-        setSize(565, 461);
+        setSize(720, 480);
+        setPreferredSize(new java.awt.Dimension(720, 480));
         setLocationRelativeTo(null);
-        setResizable(false);
 
         getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"), "salir");
         getRootPane().getActionMap().put("salir", new AbstractAction() {
@@ -67,8 +67,10 @@ public class FrmAtrasos extends javax.swing.JFrame {
         BtnVerAtrasos = new javax.swing.JButton();
         BtnVerSalidas = new javax.swing.JButton();
         BtnVerInasistencias = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -83,7 +85,11 @@ public class FrmAtrasos extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 64, 400, 300));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Variable", 2, 36)); // NOI18N
         jLabel1.setText("Atrasos y faltas ");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 290, -1));
 
         BtnVerAtrasos.setText("Atrasos");
         BtnVerAtrasos.addActionListener(new java.awt.event.ActionListener() {
@@ -91,6 +97,7 @@ public class FrmAtrasos extends javax.swing.JFrame {
                 BtnVerAtrasosActionPerformed(evt);
             }
         });
+        getContentPane().add(BtnVerAtrasos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 383, 100, 40));
 
         BtnVerSalidas.setText("Salidas");
         BtnVerSalidas.addActionListener(new java.awt.event.ActionListener() {
@@ -98,6 +105,7 @@ public class FrmAtrasos extends javax.swing.JFrame {
                 BtnVerSalidasActionPerformed(evt);
             }
         });
+        getContentPane().add(BtnVerSalidas, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 383, 100, 40));
 
         BtnVerInasistencias.setText("Inasistencias");
         BtnVerInasistencias.addActionListener(new java.awt.event.ActionListener() {
@@ -105,38 +113,11 @@ public class FrmAtrasos extends javax.swing.JFrame {
                 BtnVerInasistenciasActionPerformed(evt);
             }
         });
+        getContentPane().add(BtnVerInasistencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 383, 120, 40));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel1))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(BtnVerAtrasos)
-                .addGap(94, 94, 94)
-                .addComponent(BtnVerSalidas)
-                .addGap(74, 74, 74)
-                .addComponent(BtnVerInasistencias))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel1)
-                .addGap(4, 4, 4)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BtnVerAtrasos)
-                    .addComponent(BtnVerSalidas)
-                    .addComponent(BtnVerInasistencias)))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/marca.jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -20, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -235,6 +216,7 @@ public class FrmAtrasos extends javax.swing.JFrame {
     private javax.swing.JButton BtnVerInasistencias;
     private javax.swing.JButton BtnVerSalidas;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
