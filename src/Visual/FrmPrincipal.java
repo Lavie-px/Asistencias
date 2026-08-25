@@ -50,6 +50,7 @@ public FrmPrincipal(String tipoUsuario) {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        LblInstrucciones = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         BtnEntrada = new javax.swing.JButton();
         BtnSalida = new javax.swing.JButton();
@@ -58,6 +59,21 @@ public FrmPrincipal(String tipoUsuario) {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        LblInstrucciones.setForeground(new java.awt.Color(0, 0, 0));
+        LblInstrucciones.setText("Presione ESC o aqui para salir");
+        LblInstrucciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                LblInstruccionesMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                LblInstruccionesMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                LblInstruccionesMouseExited(evt);
+            }
+        });
+        getContentPane().add(LblInstrucciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 430, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Sitka Text", 0, 36)); // NOI18N
         jLabel1.setText("Menu de asistencia ");
@@ -82,6 +98,7 @@ public FrmPrincipal(String tipoUsuario) {
         getContentPane().add(BtnSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 120, 60));
 
         BtnAtrasos.setText("Atrasos");
+        BtnAtrasos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         BtnAtrasos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAtrasosActionPerformed(evt);
@@ -160,6 +177,18 @@ public FrmPrincipal(String tipoUsuario) {
         // TODO add your handling code here:
     }//GEN-LAST:event_LblMensajeComponentRemoved
 
+    private void LblInstruccionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LblInstruccionesMouseClicked
+        Navigation.Volver(FrmPrincipal.this, new FrmLogin());
+    }//GEN-LAST:event_LblInstruccionesMouseClicked
+
+    private void LblInstruccionesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LblInstruccionesMouseEntered
+        LblInstrucciones.setForeground(Color.red);
+    }//GEN-LAST:event_LblInstruccionesMouseEntered
+
+    private void LblInstruccionesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LblInstruccionesMouseExited
+        LblInstrucciones.setForeground(Color.black);
+    }//GEN-LAST:event_LblInstruccionesMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -189,6 +218,7 @@ public FrmPrincipal(String tipoUsuario) {
     private javax.swing.JButton BtnAtrasos;
     private javax.swing.JButton BtnEntrada;
     private javax.swing.JButton BtnSalida;
+    private javax.swing.JLabel LblInstrucciones;
     private javax.swing.JLabel LblMensaje;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
