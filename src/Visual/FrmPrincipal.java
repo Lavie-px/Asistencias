@@ -21,9 +21,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
     Sesion ObjSesion = new Sesion();
     String tipoUsuario = ObjSesion.getTipoUsuario();
 
-    public FrmPrincipal(String tipoUsuario) {
+public FrmPrincipal(String tipoUsuario) {
         this.setUndecorated(true);
         initComponents();
+        setSize(720, 480);
+        setPreferredSize(new java.awt.Dimension(480, 720));
         setLocationRelativeTo(null);
         setResizable(false);
         BtnAtrasos.setVisible(tipoUsuario.equals(tipoUsuario));
@@ -36,6 +38,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -49,28 +52,33 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         BtnEntrada = new javax.swing.JButton();
         BtnSalida = new javax.swing.JButton();
-        LblMensaje = new javax.swing.JLabel();
         BtnAtrasos = new javax.swing.JButton();
+        LblMensaje = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Sitka Text", 0, 36)); // NOI18N
         jLabel1.setText("Menu de asistencia ");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 350, -1));
 
         BtnEntrada.setText("Entrada");
+        BtnEntrada.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BtnEntrada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnEntradaActionPerformed(evt);
             }
         });
+        getContentPane().add(BtnEntrada, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, 120, 60));
 
         BtnSalida.setText("Salida");
+        BtnSalida.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BtnSalida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnSalidaActionPerformed(evt);
             }
         });
-
-        LblMensaje.setText("jLabel2");
+        getContentPane().add(BtnSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 120, 60));
 
         BtnAtrasos.setText("Atrasos");
         BtnAtrasos.addActionListener(new java.awt.event.ActionListener() {
@@ -78,37 +86,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 BtnAtrasosActionPerformed(evt);
             }
         });
+        getContentPane().add(BtnAtrasos, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 40, 120, 40));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(234, 234, 234)
-                .addComponent(BtnAtrasos))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(BtnEntrada)
-                .addGap(41, 41, 41)
-                .addComponent(BtnSalida)
-                .addGap(51, 51, 51)
-                .addComponent(LblMensaje))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BtnAtrasos)
-                    .addComponent(jLabel1))
-                .addGap(253, 253, 253)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BtnEntrada)
-                    .addComponent(BtnSalida)
-                    .addComponent(LblMensaje)))
-        );
+        LblMensaje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Menu (1).jpg"))); // NOI18N
+        LblMensaje.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentRemoved(java.awt.event.ContainerEvent evt) {
+                LblMensajeComponentRemoved(evt);
+            }
+        });
+        getContentPane().add(LblMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -148,6 +134,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void BtnAtrasosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAtrasosActionPerformed
         Navigation.Viajar(FrmPrincipal.this, new FrmAtrasos());
     }//GEN-LAST:event_BtnAtrasosActionPerformed
+
+    private void LblMensajeComponentRemoved(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_LblMensajeComponentRemoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LblMensajeComponentRemoved
 
     /**
      * @param args the command line arguments
