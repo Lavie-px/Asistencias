@@ -30,7 +30,7 @@ public class FrmAtrasos extends javax.swing.JFrame {
     Sesion ObjSesion = new Sesion();
     String tipoUsuario = ObjSesion.getTipoUsuario();
 
-    public FrmAtrasos() {
+    public FrmAtrasos(String tipoUsuario) {
         this.setUndecorated(true);
         initComponents();
         CargarAtrasos();
@@ -51,6 +51,10 @@ public class FrmAtrasos extends javax.swing.JFrame {
                 Navigation.Volver(FrmAtrasos.this, new FrmPrincipal(tipoUsuario));
             }
         });
+    }
+
+    private FrmAtrasos() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -223,11 +227,11 @@ public class FrmAtrasos extends javax.swing.JFrame {
     }//GEN-LAST:event_LblInstruccionesMouseExited
 
     private void BtnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnImprimirActionPerformed
-           try {
-        jTable1.print(javax.swing.JTable.PrintMode.FIT_WIDTH);
-    } catch (java.awt.print.PrinterException e) {
-        JOptionPane.showMessageDialog(this, "Error al imprimir: " + e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
-    }
+        try {
+            jTable1.print(javax.swing.JTable.PrintMode.FIT_WIDTH);
+        } catch (java.awt.print.PrinterException e) {
+            JOptionPane.showMessageDialog(this, "Error al imprimir: " + e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_BtnImprimirActionPerformed
 
     /**
