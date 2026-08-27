@@ -1,10 +1,16 @@
+
 # NetBeans
 /nbproject/private/
+/nbbuild/
+/nbdist/
+.netbeans/
+.nb-gradle/
+nb-configuration.xml
 
 # Archivos compilados
 /build/
 /dist/
 /target/
 
-# Archivos de Java
+# Java
 *.class
