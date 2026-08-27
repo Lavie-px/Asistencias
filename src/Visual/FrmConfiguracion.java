@@ -36,10 +36,7 @@ public class FrmConfiguracion extends javax.swing.JFrame {
         this.setUndecorated(true);
         initComponents();
         
-        if(tipoUsuario != "1"){
-            JOptionPane.showMessageDialog( this,"No posees los permisos suficientes para estar aqui","Error Acceso",JOptionPane.OK_OPTION);
-            
-        }
+        Navigation.ControlAcceso(tipoUsuario, FrmConfiguracion.this, new FrmPrincipal(tipoUsuario));
         setSize(720, 480);
         setPreferredSize(new java.awt.Dimension(480, 720));
         cardLayout = new CardLayout();
@@ -138,7 +135,7 @@ public class FrmConfiguracion extends javax.swing.JFrame {
         });
         PnoHorario.add(BtnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, -1, -1));
 
-        PnoXd.add(PnoHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 480));
+        PnoXd.add(PnoHorario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 570));
 
         PnoContenido.add(PnoXd, new org.netbeans.lib.awtextra.AbsoluteConstraints(-9, 0, 450, 480));
 
@@ -185,7 +182,9 @@ public class FrmConfiguracion extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(PnoContenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(PnoOpciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(PnoOpciones, javax.swing.GroupLayout.PREFERRED_SIZE, 567, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
