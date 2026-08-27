@@ -69,6 +69,7 @@ public class FrmAtrasos extends javax.swing.JFrame {
         BtnVerAtrasos = new javax.swing.JButton();
         BtnVerSalidas = new javax.swing.JButton();
         BtnVerInasistencias = new javax.swing.JButton();
+        BtnImprimir = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -89,7 +90,6 @@ public class FrmAtrasos extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 64, 400, 300));
 
-        LblInstrucciones.setForeground(new java.awt.Color(0, 0, 0));
         LblInstrucciones.setText("Presione ESC o aqui para salir");
         LblInstrucciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -132,8 +132,16 @@ public class FrmAtrasos extends javax.swing.JFrame {
         });
         getContentPane().add(BtnVerInasistencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 383, 120, 40));
 
+        BtnImprimir.setText("Imprimir");
+        BtnImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnImprimirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BtnImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 310, 80, 50));
+
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/marca.jpg"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -20, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -214,6 +222,14 @@ public class FrmAtrasos extends javax.swing.JFrame {
         LblInstrucciones.setForeground(Color.black);
     }//GEN-LAST:event_LblInstruccionesMouseExited
 
+    private void BtnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnImprimirActionPerformed
+           try {
+        jTable1.print(javax.swing.JTable.PrintMode.FIT_WIDTH);
+    } catch (java.awt.print.PrinterException e) {
+        JOptionPane.showMessageDialog(this, "Error al imprimir: " + e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_BtnImprimirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -240,6 +256,7 @@ public class FrmAtrasos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnImprimir;
     private javax.swing.JButton BtnVerAtrasos;
     private javax.swing.JButton BtnVerInasistencias;
     private javax.swing.JButton BtnVerSalidas;
