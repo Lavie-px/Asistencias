@@ -30,4 +30,12 @@ public class Navigation {
         anterior.setVisible(true);
         
     }
+    
+    public static void ControlAcceso(String tipoUsuario, JFrame actual, JFrame anterior){
+            if(!"1".equals(tipoUsuario)){
+            JOptionPane.showMessageDialog( actual,"No posees los permisos suficientes para estar aqui","Error Acceso",JOptionPane.OK_OPTION);
+            actual.dispose();
+            anterior.setVisible(true);
+        }
+    }
 }
