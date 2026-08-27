@@ -55,6 +55,7 @@ public FrmPrincipal(String tipoUsuario) {
         BtnEntrada = new javax.swing.JButton();
         BtnSalida = new javax.swing.JButton();
         BtnAtrasos = new javax.swing.JButton();
+        BtnConfiguracion = new javax.swing.JButton();
         LblMensaje = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -73,7 +74,7 @@ public FrmPrincipal(String tipoUsuario) {
                 LblInstruccionesMouseExited(evt);
             }
         });
-        getContentPane().add(LblInstrucciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 430, -1, -1));
+        getContentPane().add(LblInstrucciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 440, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Sitka Text", 0, 36)); // NOI18N
         jLabel1.setText("Menu de asistencia ");
@@ -106,6 +107,15 @@ public FrmPrincipal(String tipoUsuario) {
         });
         getContentPane().add(BtnAtrasos, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 40, 120, 40));
 
+        BtnConfiguracion.setText("Configuracion");
+        BtnConfiguracion.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        BtnConfiguracion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnConfiguracionActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BtnConfiguracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 360, 130, 60));
+
         LblMensaje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Menu (1).jpg"))); // NOI18N
         LblMensaje.addContainerListener(new java.awt.event.ContainerAdapter() {
             public void componentRemoved(java.awt.event.ContainerEvent evt) {
@@ -124,11 +134,13 @@ public FrmPrincipal(String tipoUsuario) {
                 BtnEntrada.setVisible(true);
                 BtnSalida.setVisible(true);
                 BtnAtrasos.setVisible(true);
+                BtnConfiguracion.setVisible(true);
                 
             case "0":
                 BtnEntrada.setVisible(true);
                 BtnSalida.setVisible(true);
                 BtnAtrasos.setVisible(false);
+                BtnConfiguracion.setVisible(false);
                 
             default:
                 JOptionPane.showMessageDialog(this, "Tipo de usuario no reconocido");
@@ -170,7 +182,7 @@ public FrmPrincipal(String tipoUsuario) {
     }//GEN-LAST:event_BtnSalidaActionPerformed
 
     private void BtnAtrasosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAtrasosActionPerformed
-        Navigation.Viajar(FrmPrincipal.this, new FrmAtrasos());
+        Navigation.Viajar(FrmPrincipal.this, new FrmAtrasos(tipoUsuario));
     }//GEN-LAST:event_BtnAtrasosActionPerformed
 
     private void LblMensajeComponentRemoved(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_LblMensajeComponentRemoved
@@ -188,6 +200,10 @@ public FrmPrincipal(String tipoUsuario) {
     private void LblInstruccionesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LblInstruccionesMouseExited
         LblInstrucciones.setForeground(Color.black);
     }//GEN-LAST:event_LblInstruccionesMouseExited
+
+    private void BtnConfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnConfiguracionActionPerformed
+        Navigation.Viajar(FrmPrincipal.this, new FrmConfiguracion(tipoUsuario));
+    }//GEN-LAST:event_BtnConfiguracionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,6 +232,7 @@ public FrmPrincipal(String tipoUsuario) {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAtrasos;
+    private javax.swing.JButton BtnConfiguracion;
     private javax.swing.JButton BtnEntrada;
     private javax.swing.JButton BtnSalida;
     private javax.swing.JLabel LblInstrucciones;
