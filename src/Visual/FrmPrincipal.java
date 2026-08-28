@@ -4,8 +4,10 @@ import Controller.AsistenciasLog.AsistenciaController;
 import Controller.User.Sesion;
 import Helpers.Navigation;
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
@@ -25,6 +27,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
 public FrmPrincipal(String tipoUsuario) {
         this.setUndecorated(true);
         initComponents();
+        Image icon = new ImageIcon(getClass().getResource("/Assets/TaskBarIcon.png")).getImage();
+        setLocationRelativeTo(null);
         setSize(720, 480);
         setPreferredSize(new java.awt.Dimension(480, 720));
         setLocationRelativeTo(null);

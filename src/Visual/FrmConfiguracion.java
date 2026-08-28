@@ -10,8 +10,10 @@ import java.awt.CardLayout;
 import Helpers.HoraDocumentFilter;
 import javax.swing.text.AbstractDocument;
 import Controller.Horario.HorarioController;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
@@ -35,7 +37,8 @@ public class FrmConfiguracion extends javax.swing.JFrame {
     public FrmConfiguracion(String tipoUsuario) {
         this.setUndecorated(true);
         initComponents();
-        
+        Image icon = new ImageIcon(getClass().getResource("/Assets/TaskBarIcon.png")).getImage();
+        setLocationRelativeTo(null);
         Navigation.ControlAcceso(tipoUsuario, FrmConfiguracion.this, new FrmPrincipal(tipoUsuario));
         setSize(720, 480);
         setPreferredSize(new java.awt.Dimension(480, 720));
