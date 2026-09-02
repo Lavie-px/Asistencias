@@ -35,6 +35,7 @@ public class FrmAtrasos extends javax.swing.JFrame {
         initComponents();
         CargarAtrasos();
         Image icon = new ImageIcon(getClass().getResource("/Assets/TaskBarIcon.png")).getImage();
+        setLocationRelativeTo(null);
         setIconImage(icon);
         try {
             java.awt.Taskbar.getTaskbar().setIconImage(icon);
@@ -42,7 +43,6 @@ public class FrmAtrasos extends javax.swing.JFrame {
         }
         setSize(720, 480);
         setPreferredSize(new java.awt.Dimension(720, 480));
-        setLocationRelativeTo(null);
 
         getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ESCAPE"), "salir");
         getRootPane().getActionMap().put("salir", new AbstractAction() {

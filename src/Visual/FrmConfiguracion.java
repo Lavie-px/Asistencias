@@ -39,6 +39,9 @@ public class FrmConfiguracion extends javax.swing.JFrame {
         initComponents();
         Image icon = new ImageIcon(getClass().getResource("/Assets/TaskBarIcon.png")).getImage();
         setLocationRelativeTo(null);
+        setIconImage(icon);
+      
+        setLocationRelativeTo(null);
         Navigation.ControlAcceso(tipoUsuario, FrmConfiguracion.this, new FrmPrincipal(tipoUsuario));
         setSize(720, 480);
         setPreferredSize(new java.awt.Dimension(480, 720));
