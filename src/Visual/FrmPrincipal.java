@@ -24,11 +24,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
     Sesion ObjSesion = new Sesion();
     String tipoUsuario = ObjSesion.getTipoUsuario();
 
-public FrmPrincipal(String tipoUsuario) {
+    public FrmPrincipal(String tipoUsuario) {
         this.setUndecorated(true);
         initComponents();
         Image icon = new ImageIcon(getClass().getResource("/Assets/TaskBarIcon.png")).getImage();
         setLocationRelativeTo(null);
+        setIconImage(icon);
+        
         setSize(720, 480);
         setPreferredSize(new java.awt.Dimension(480, 720));
         setLocationRelativeTo(null);
@@ -43,7 +45,6 @@ public FrmPrincipal(String tipoUsuario) {
             }
         });
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,6 +57,7 @@ public FrmPrincipal(String tipoUsuario) {
 
         LblInstrucciones = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        BtnRegistroUsuarios = new javax.swing.JButton();
         BtnEntrada = new javax.swing.JButton();
         BtnSalida = new javax.swing.JButton();
         BtnAtrasos = new javax.swing.JButton();
@@ -84,6 +86,15 @@ public FrmPrincipal(String tipoUsuario) {
         jLabel1.setText("Menu de asistencia ");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 350, -1));
 
+        BtnRegistroUsuarios.setText("Administrar   Usuarios");
+        BtnRegistroUsuarios.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        BtnRegistroUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRegistroUsuariosActionPerformed(evt);
+            }
+        });
+        getContentPane().add(BtnRegistroUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 370, 160, 60));
+
         BtnEntrada.setText("Entrada");
         BtnEntrada.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BtnEntrada.addActionListener(new java.awt.event.ActionListener() {
@@ -100,7 +111,7 @@ public FrmPrincipal(String tipoUsuario) {
                 BtnSalidaActionPerformed(evt);
             }
         });
-        getContentPane().add(BtnSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 120, 60));
+        getContentPane().add(BtnSalida, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 310, 120, 60));
 
         BtnAtrasos.setText("Atrasos");
         BtnAtrasos.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -118,7 +129,7 @@ public FrmPrincipal(String tipoUsuario) {
                 BtnConfiguracionActionPerformed(evt);
             }
         });
-        getContentPane().add(BtnConfiguracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 360, 130, 60));
+        getContentPane().add(BtnConfiguracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 90, 120, 40));
 
         LblMensaje.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Assets/Menu (1).jpg"))); // NOI18N
         LblMensaje.addContainerListener(new java.awt.event.ContainerAdapter() {
@@ -139,13 +150,13 @@ public FrmPrincipal(String tipoUsuario) {
                 BtnSalida.setVisible(true);
                 BtnAtrasos.setVisible(true);
                 BtnConfiguracion.setVisible(true);
-                
+
             case "0":
                 BtnEntrada.setVisible(true);
                 BtnSalida.setVisible(true);
                 BtnAtrasos.setVisible(false);
                 BtnConfiguracion.setVisible(false);
-                
+
             default:
                 JOptionPane.showMessageDialog(this, "Tipo de usuario no reconocido");
                 System.exit(0);
@@ -209,6 +220,10 @@ public FrmPrincipal(String tipoUsuario) {
         Navigation.Viajar(FrmPrincipal.this, new FrmConfiguracion(tipoUsuario));
     }//GEN-LAST:event_BtnConfiguracionActionPerformed
 
+    private void BtnRegistroUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegistroUsuariosActionPerformed
+        Navigation.Viajar(FrmPrincipal.this, new FrmRegistro(tipoUsuario));
+    }//GEN-LAST:event_BtnRegistroUsuariosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -238,6 +253,7 @@ public FrmPrincipal(String tipoUsuario) {
     private javax.swing.JButton BtnAtrasos;
     private javax.swing.JButton BtnConfiguracion;
     private javax.swing.JButton BtnEntrada;
+    private javax.swing.JButton BtnRegistroUsuarios;
     private javax.swing.JButton BtnSalida;
     private javax.swing.JLabel LblInstrucciones;
     private javax.swing.JLabel LblMensaje;
