@@ -44,6 +44,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 Navigation.Volver(FrmPrincipal.this, new FrmLogin());
             }
         });
+        configurarPorRol(tipoUsuario);
     }
 
     /**
@@ -150,12 +151,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 BtnSalida.setVisible(true);
                 BtnAtrasos.setVisible(true);
                 BtnConfiguracion.setVisible(true);
+                BtnRegistroUsuarios.setVisible(true);
+                break;
 
             case "0":
                 BtnEntrada.setVisible(true);
                 BtnSalida.setVisible(true);
                 BtnAtrasos.setVisible(false);
                 BtnConfiguracion.setVisible(false);
+                BtnRegistroUsuarios.setVisible(false);
+                break;
 
             default:
                 JOptionPane.showMessageDialog(this, "Tipo de usuario no reconocido");
